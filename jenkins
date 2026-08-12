@@ -1,0 +1,27 @@
+pipeline{
+    agent any
+    stages{
+        stages('Compile'){
+            steps{
+                dir('src'){
+                    bat 'java Hello.java'
+                }
+            }
+        }
+        stage('Run'){
+            steps{
+                dir('src'){
+                    bat 'java Hello'
+                }
+            }
+        }
+    }
+}
+post{
+    success{
+        echo 'BUILD SUCCESSFUL'
+    }
+    failure{
+        echo 'BUILD FAILED'
+    }
+}
